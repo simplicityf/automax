@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block 'title' %}
+<title>MotorMax.List Your Car</title>
+{% endblock %}
+
+{% block 'body' %}
+<header>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container">
+          <a class="navbar-brand" href="#"><img src="{% static 'images/car2.jpg' %}" alt="Logo" class="d-inline-block align-text-top" style="margin-top:-10px"></a>
+          <!--credit:https://pixels.com/featured/44-car-csa-images.html?product=art-print-->
+          {% if request.user.is_authenticated %}
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="home1 float-end"  href="{% url 'home' %}" title="Home">Home</a></li>
+          </ul>
+          <div class="text-end">
+            <a class="login"  href="{% url 'logout' %}" title="Logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+      {% endif %}
+ </header>
+ <section class="container">
+    <h2 class="text-primary-emphasis my-5">Edit</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6">
+                {{listing_form|crispy}}
+            </div>
+            <div class="col-md-6">
+                {{location_form|crispy}}
+            </div>
+        </div>
+        <button class="btn btn-lg btn-primary" type="submit" style="width:100%; margin-bottom:20px">Save</button>
+    </form>
+ </section>
+ {% endblock %}

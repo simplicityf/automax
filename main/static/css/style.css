@@ -1,0 +1,68 @@
+body{
+    background-color: rgba(224, 207, 240, 0.8);
+    font-weight: bolder;
+    color: black;
+}
+
+.contain img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.navbar-brand img{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+}
+
+.navbar-brand span{
+    font-weight: bolder;
+    font-size: 20px;
+    letter-spacing: 3px;
+}
+.home1{
+     border: 1px solid none;
+     background-color: beige;
+     padding: 2px 20px;
+     border-radius: 50px;
+     border-left: 10px solid blueviolet;
+     margin: 2px 0;
+     text-decoration: none;
+     font-size: 16px;
+     color:blueviolet;
+}
+
+.login{
+    border: 1px solid none;
+    background-color: beige;
+    padding: 2px 20px;
+    border-radius: 50px;
+    border-right: 10px solid blueviolet;
+    margin: 2px 0;
+    text-decoration: none;
+    font-size: 16px;
+    color:blueviolet;
+}
+
+.foot{
+    position: fixed;
+    bottom: 0;
+    left: 40%;
+}
+
+#home2{
+    position: relative;
+    margin-top:13%;
+    color:white;
+    font-size: 20px;
+}
+
+.mt {
+    margin-top: 20px;
+}
+
+.foot2{
+    width: 100%;
+}

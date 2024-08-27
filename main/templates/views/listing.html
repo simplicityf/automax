@@ -1,0 +1,105 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block 'title' %}
+<title>MotorMax.{{listing.model}}</title>
+{% endblock %}
+
+{% block 'body' %}
+<main>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+            <div class="container">
+              <a class="navbar-brand" href="#"><img src="{% static 'images/car2.jpg' %}" alt="Logo" class="d-inline-block align-text-top" style="margin-top:-10px"></a>
+              <!--credit:https://pixels.com/featured/44-car-csa-images.html?product=art-print-->
+              {% if request.user.is_authenticated %}
+              <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="home1 float-end"  href="{% url 'home' %}" title="Home">Home</a></li>
+              </ul>
+              <div class="text-end">
+                <a class="login"  href="{% url 'logout' %}" title="Logout">Logout</a>
+              </div>
+            </div>
+          </nav>
+          {% endif %}
+     </header>
+    <section class="container-fluid" style="background-color: rgb(221, 190, 250)">
+        <div class="row">
+
+            <div class="col-md-6">
+                <h1 class="text-center" style="margin-top:130px">{{listing.model}}</h1>
+                <p class="text-center">{{listing.seller.user.username}}-{{listing.updated_at}}</p>
+            </div>
+
+            <div class="col-md-6">
+                <img src="{{listing.image.url}}" class="thumbnail" width="500" height="300" style="margin:30px 0">
+            </div>
+        </div>
+    </section>
+
+    <div class="table-primary">
+        <div class="container px-4 py-5">
+           <h2>MotorMax</h2>
+           <div class="row text-center">
+
+            <div class="col-md-7">
+                <div class="table-responsive">
+                    <table class="table table-hover text-center">
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="text-start">Brand</th>
+                                <td>{{listing.brand|capfirst}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Vin</th>
+                                <td>{{listing.vin|capfirst}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Mileage</th>
+                                <td>{{listing.mileage|capfirst}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Color</th>
+                                <td>{{listing.color|capfirst}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Engine</th>
+                                <td>{{listing.engine|capfirst}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="text-start">Transmission</th>
+                                <td>{{listing.transmission|capfirst}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-secondary mb-3">
+                    <div class="card-header">
+                        <h4 class="text-primary">Location</h4>
+                    </div>
+                    <div class="card-body">
+                      <ul style="list-style-type:none">
+                        <li class="text-primary">{{listing.location.lga}}, {{listing.location.city}}, 
+                            {{listing.location.state}}</li>
+                      </ul>
+                      <button type="button" class="btn btn-lg btn-outline-primary">{{listing.seller.phone_number}}</button>
+                      <br>
+                      <br>
+                      <button type="button" class="btn btn-lg btn-outline-primary">Send Email</button>
+                    </div>
+                  </div>
+            </div>
+           </div>
+        </div>
+
+        <div class="container">
+            <h2 class="text-primary-emphasis">Description</h2>
+            <p style="margin-top:16px">{{listing.description}}</p>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

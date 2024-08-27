@@ -1,0 +1,30 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+  
+
+{% block 'body' %}
+
+   
+    <div class="container">
+        <main class="text-center">
+        <form action="" method="post">
+          <br>
+          <img src="{% static 'images/car2.jpg' %}" alt="logo" width="50" height="50"> 
+          <br>
+          <br>
+          {% csrf_token %}
+          {{ login_form|crispy}}
+          <br>
+          <button type="submit" class="btn btn-primary">Sign In</button>
+        </form>
+        <br>
+        <p> copyright &copy; {% now 'Y' %}  Nasir Azeezat Omobolanle</p>
+        </main>
+       
+    
+{% endblock %}
+
+{% block 'footer' %}
+{% endblock %}
+</div>

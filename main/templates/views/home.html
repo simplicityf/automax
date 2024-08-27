@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block 'title' %}
+<title>MotorMax.Home</title>
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block 'body' %}
+
+
+
+<main>
+  <header>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container">
+          <a class="navbar-brand" href="#"><img src="{% static 'images/car2.jpg' %}" alt="Logo" class="d-inline-block align-text-top" style="margin-top:-10px"></a>
+          <!--credit:https://pixels.com/featured/44-car-csa-images.html?product=art-print-->
+          {% if request.user.is_authenticated %}
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="home1 float-end"  href="{% url 'profile' %}" title="Profile">Profile</a></li>
+          </ul>
+          <div class="text-end">
+            <a class="login"  href="{% url 'logout' %}" title="Logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+      {% endif %}
+ </header>
+    
+     {% if messages %}
+{% for messages in messages %}
+<div {% if messages.tags %} class="alert alert-{{messages.tags}}" {% endif %}>
+    {{ messages }}
+</div>
+ {% endfor %}
+ 
+ {% endif %}
+</main>
+<section style="background-color: rgb(221, 190, 250)">
+  <div class="container">
+    <small class="float-end"> Hi {{request.user.username}}!</small>
+ 
+    <div class="row">
+    <div class="col-md-6" style="margin-top:30px">
+    <h1>MotorMax</h1>
+    <p> The best place to buy or sell modern cars. We've made it so much easier</p>
+    <a type="button" class="home1" href={% url 'list' %}>List Your Car</a>
+  </div>
+
+  <div class="col-md-6" style="margin-top:30px; margin-bottom:30px">
+    <!--Listing Filter-->
+    <form method="get">
+      {{listing_filter.form|crispy}}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+    
+    </div>
+  </div>
+</section>
+
+<div class="container" style="margin-top:30px; margin-bottom:30px">
+<div class="row">
+ 
+  {% for listings in listing_filter.qs %}
+<div class="col-sm-6 col-md-4 col-lg-3">
+  {% include "components/listing_card.html" %}
+</div>
+{% endfor %}
+
+</div>
+</div>
+{% endblock %}

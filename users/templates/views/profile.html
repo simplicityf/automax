@@ -1,0 +1,75 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+  
+
+{% block 'body' %}
+<header>
+    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <div class="container">
+          <a class="navbar-brand" href="#"><img src="{% static 'images/car2.jpg' %}" alt="Logo" class="d-inline-block align-text-top" style="margin-top:-10px"></a>
+          <!--credit:https://pixels.com/featured/44-car-csa-images.html?product=art-print-->
+          {% if request.user.is_authenticated %}
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item"><a class="home1 float-end"  href="{% url 'home' %}" title="Home">Home</a></li>
+          </ul>
+          <div class="text-end">
+            <a class="login"  href="{% url 'logout' %}" title="Logout">Logout</a>
+          </div>
+        </div>
+      </nav>
+      {% endif %}
+ </header>
+<div class="container text-center">
+    <div class="row">
+
+        <div class="col-md-6">
+            <h2 class="text-secondary-emphasis" style="margin-top:20px">Profile</h2>
+        </div>
+    </div>
+
+    
+        <form action="" method="post" enctype="multipart/form-data">
+             {% csrf_token %} 
+             <div class="row">
+             <div class="col-md-6">
+                {{user_form|crispy}}
+                {{profile_form|crispy}}
+             </div>
+             <div class="col-md-6">
+                {{location_form|crispy}}
+             </div>
+            </div>
+             <button class="btn btn-lg btn-primary" type="submit" style="width:100%; margin-bottom:20px">Save</button>
+        </form>
+
+        <h2 class="text-secondary-emphasis" style="margin-top:20px">Your Listing(s)</h2>
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <tbody>
+                    {% for listing in user_listing %}
+                    <tr>
+                        <td> {{listing.id}} </td>
+                        <td> {{listing.model}} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2 class="text-secondary-emphasis" style="margin-top:20px">Liked Listing(s)</h2>
+        <div class="table-responsive">
+            <table class="table table-hover text-center">
+                <tbody>
+                    {% for liked_listing in user_listing %}
+                    <tr>
+                        <td> {{listing.id}} </td>
+                        <td> {{listing.model}} </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base/base.html" %}
+    {% load static %}
+
+{% block 'body' %}
+
+   
+    <div class="contain">
+        <img src="{% static 'images/car.jpg' %}" alt="image">
+        <!--credit:firstsignal-->
+      </div>
+        <header>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                  <a class="navbar-brand" href="#"><img src="{% static 'images/car2.jpg' %}" alt="Logo" class="d-inline-block align-text-top" style="margin-left:50px; margin-top:-10px"> <span style="margin-left:8px; color:white">MotorMax</span></a>
+                  <!--credit:https://pixels.com/featured/44-car-csa-images.html?product=art-print-->
+                  <div class="text-right">
+                    {% if request.user.is_authenticated %}
+                    <a class="home1"  href="{% url "home" %}" title="Home">Home</a>
+                    {% else %} 
+                    <a class="login"  href="{% url "login" %}" title="Login">Login</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </nav>
+         </header>
+
+        <main class="text-center" id="home2">
+            <h2 style="color:white">Find a deal near you!</h2>
+            <p>Looking to buy or sell a used car? We get you covered.<br>
+                MotorMax is the leading used car marketplace</p>
+              <p>  <a href="{% url "register" %}" class="home1">Register</a></p>
+        </main>
+       
+    
+{% endblock %}
+
+{% block 'footer' %}
+<footer class="foot">
+    <p style="color:white"> copyright &copy; {% now 'Y' %}  Nasir Azeezat Omobolanle</p>
+</footer>
+{% endblock %}
+
